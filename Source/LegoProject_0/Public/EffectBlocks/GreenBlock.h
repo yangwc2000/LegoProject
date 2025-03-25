@@ -17,6 +17,6 @@ class LEGOPROJECT_0_API AGreenBlock : public ABlockBase
 public:
 	AGreenBlock();
 
-	float InvincibilityTime;
+	float JumpBoostValue;
 	virtual void ApplyEffect(ACharacter* Target) override;
 };

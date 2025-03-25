@@ -3,6 +3,7 @@
 
 #include "EffectBlocks/BlockBase.h"
 #include "Components/BoxComponent.h"
+#include "GameFramework/Character.h"
 
 // Sets default values
 ABlockBase::ABlockBase()
@@ -35,15 +36,13 @@ void ABlockBase::BeginPlay()
 	
 }
 
-// Called every frame
-void ABlockBase::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void ABlockBase::OnCharacterOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	ACharacter* Charaacter = Cast<ACharacter>(OtherActor);
+	if (Charaacter)
+	{
+		ApplyEffect(Charaacter);
+	}
 }
 
 void ABlockBase::OnCharacterEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
