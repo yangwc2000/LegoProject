@@ -131,31 +131,21 @@ void ALegoCharacter::Look(const FInputActionValue& value)
 
 void ALegoCharacter::StartPlacingBlock(const FInputActionValue& value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("🟡 StartPlacingBlock 호출됨"));
 
 	if (!PreviewBlock && BlockClasses.IsValidIndex(SelectedBlockIndex))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("▶️ 블럭 생성 시도: Index = %d"), SelectedBlockIndex);
 
 		FActorSpawnParameters Params;
 		Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-		PreviewBlock = GetWorld()->SpawnActor<AActor>(BlockClasses[SelectedBlockIndex], FVector::ZeroVector, FRotator::ZeroRotator, Params);
+		PreviewBlock = GetWorld()->SpawnActor<AActor>(PreviewBlockClass, FVector::ZeroVector, FRotator::ZeroRotator, Params);
+
 
 		if (PreviewBlock)
 		{
 			PreviewBlock->SetActorEnableCollision(false);
-			PreviewBlock->SetActorHiddenInGame(false); // 혹시 모를 숨김 상태 방지
-			UE_LOG(LogTemp, Warning, TEXT("✅ PreviewBlock 생성 성공"));
+			PreviewBlock->SetActorHiddenInGame(false); 
 		}
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("❌ PreviewBlock 생성 실패"));
-		}
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("🔁 이미 PreviewBlock 이 있음 또는 잘못된 인덱스"));
 	}
 }
 
