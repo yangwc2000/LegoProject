@@ -24,6 +24,8 @@ ABlockBase::ABlockBase()
 	// Static Mesh Component
 	StaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	StaticMeshComp->SetupAttachment(SceneComp);
+
+	bReplicates = true;
 }
 
 // Called when the game starts or when spawned

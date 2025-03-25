@@ -2,12 +2,44 @@
 
 
 #include "EffectBlocks/RedBlock.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/Character.h"
 
 ARedBlock::ARedBlock()
 {
+	EffectDuration = 5.0f;
+	SpeedBoostValue = 1.2f;
 }
 
 void ARedBlock::ApplyEffect(ACharacter* Target)
 {
+	if (HasAuthority())
+	{
+		ACharacter* PlayerCharacter = Cast<ACharacter>(Target);
+		if (PlayerCharacter)
+		{
+			UCharacterMovementComponent* MovementComp = PlayerCharacter->GetCharacterMovement();
+			if (MovementComp)
+			{
+				float OriginalSpeed = MovementComp->MaxWalkSpeed;
+				float NewSpeed = OriginalSpeed * SpeedBoostValue;
+
+				MovementComp->MaxWalkSpeed = NewSpeed;
+
+				FTimerHandle TimerHandle;
+				GetWorld()->GetTimerManager().SetTimer(TimerHandle, [PlayerCharacter, OriginalSpeed]()
+					{
+						if (PlayerCharacter)
+						{
+							UCharacterMovementComponent* ResetMovementComp = PlayerCharacter->GetCharacterMovement();
+							if (ResetMovementComp)
+							{
+								ResetMovementComp->MaxWalkSpeed = OriginalSpeed;
+							}
+						}
+					}, EffectDuration, false);
+			}
+		}
+	}
 
 }
