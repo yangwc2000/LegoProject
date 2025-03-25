@@ -2,6 +2,7 @@
 
 
 #include "EffectBlocks/BlueBlock.h"
+#include "GameFramework/Character.h"
 
 ABlueBlock::ABlueBlock()
 {
