@@ -33,6 +33,8 @@ ABlockBase::ABlockBase()
 void ABlockBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
 	
 }
 
