@@ -6,9 +6,8 @@
 #include "EffectBlocks/BlockBase.h"
 #include "GreenBlock.generated.h"
 
-/**
- * 
- */
+class UArrowComponent;
+
 UCLASS()
 class LEGOPROJECT_0_API AGreenBlock : public ABlockBase
 {
@@ -17,6 +16,9 @@ class LEGOPROJECT_0_API AGreenBlock : public ABlockBase
 public:
 	AGreenBlock();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UArrowComponent* ArrowComponent;
 	float JumpBoostValue;
+
 	virtual void ApplyEffect(ACharacter* Target) override;
 };

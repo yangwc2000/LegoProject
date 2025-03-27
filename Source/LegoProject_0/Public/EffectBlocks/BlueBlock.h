@@ -17,6 +17,7 @@ public:
 	ABlueBlock();
 
 	float InvincibilityTime;
+	float EffectDuration;
 
 	virtual void ApplyEffect(ACharacter* Target) override;
 };
