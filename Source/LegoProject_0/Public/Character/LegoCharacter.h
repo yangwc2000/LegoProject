@@ -54,6 +54,9 @@ public:
 	UFUNCTION()
 	void SelectBlock3(const FInputActionValue& value);
 
+	UFUNCTION()
+	void RotatePreviewBlock(const FInputActionValue& Value);
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Block")
 	int32 SelectedBlockIndex = 0;
 
@@ -62,4 +65,5 @@ public:
 private:
 	AActor* PreviewBlock;
 	void UpdatePreviewBlock();
+	void HandleBlockSelection(int32 Index);
 };

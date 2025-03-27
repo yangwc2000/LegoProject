@@ -200,15 +200,13 @@ void ALegoCharacter::ConfirmPlacingBlock(const FInputActionValue& value)
 	if (PreviewBlock && BlockClasses.IsValidIndex(SelectedBlockIndex))
 	{
 		FVector SpawnLocation = PreviewBlock->GetActorLocation();
-		FRotator SpawnRotation = PreviewBlock->GetActorRotation(); // ✅ 회전값 복사
 
-		GetWorld()->SpawnActor<AActor>(BlockClasses[SelectedBlockIndex], SpawnLocation, SpawnRotation);
+		GetWorld()->SpawnActor<AActor>(BlockClasses[SelectedBlockIndex], SpawnLocation, FRotator::ZeroRotator);
 
 		PreviewBlock->Destroy();
 		PreviewBlock = nullptr;
 	}
 }
-
 
 void ALegoCharacter::SelectBlock1(const FInputActionValue& value)
 {
