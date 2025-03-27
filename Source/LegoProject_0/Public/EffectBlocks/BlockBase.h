@@ -25,8 +25,8 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Mesh")
 	UStaticMeshComponent* StaticMeshComp;
 
-	// Effect Duration
-	float EffectDuration;
+	float BlockLifeTime;
+	FTimerHandle BlockLifeTimeTimerHandle;
 
 protected:
 	// Called when the game starts or when spawned
@@ -50,5 +50,5 @@ public:
 		int32 OtherBodyIndex);
 
 	virtual void ApplyEffect(ACharacter* Target);
-
+	void DestoryBlock();
 };

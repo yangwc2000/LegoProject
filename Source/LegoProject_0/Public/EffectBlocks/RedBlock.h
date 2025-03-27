@@ -18,6 +18,7 @@ public:
 	ARedBlock();
 
 	float SpeedBoostValue;
+	float EffectDuration;
 
 	virtual void ApplyEffect(ACharacter* Target) override;
 };

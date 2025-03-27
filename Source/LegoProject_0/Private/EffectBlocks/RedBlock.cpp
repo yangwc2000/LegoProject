@@ -8,6 +8,7 @@
 ARedBlock::ARedBlock()
 {
 	EffectDuration = 5.0f;
+	BlockLifeTime = 5.0f;
 	SpeedBoostValue = 1.2f;
 }
 
@@ -26,8 +27,8 @@ void ARedBlock::ApplyEffect(ACharacter* Target)
 
 				MovementComp->MaxWalkSpeed = NewSpeed;
 
-				FTimerHandle TimerHandle;
-				GetWorld()->GetTimerManager().SetTimer(TimerHandle, [PlayerCharacter, OriginalSpeed]()
+				FTimerHandle EffectTimerHandle;
+				GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, [PlayerCharacter, OriginalSpeed]()
 					{
 						if (PlayerCharacter)
 						{
